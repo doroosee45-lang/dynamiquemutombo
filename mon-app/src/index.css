@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rdc-rouge: #CE1126;
+  --rdc-bleu: #007FFF;
+  --rdc-vert: #009A44;
+  --rdc-jaune: #F7D618;
+  --dark-900: #0a0a0f;
+  --dark-800: #111118;
+  --dark-700: #1a1a24;
+  --dark-600: #22222f;
+  --dark-500: #2d2d3d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--dark-900);
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar custom */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--dark-800); }
+::-webkit-scrollbar-thumb { background: var(--dark-500); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--rdc-rouge); }
+
+/* Animations */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--dark-700) 25%, var(--dark-600) 50%, var(--dark-700) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 6px;
+}
+
+/* Cards */
+.card {
+  background: var(--dark-800);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.card:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-1px); }
+
+/* Buttons */
+.btn-primary {
+  background: var(--rdc-rouge);
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-primary:hover { background: #b00e20; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(206,17,38,0.3); }
+
+.btn-secondary {
+  background: var(--dark-600);
+  color: #e2e8f0;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-secondary:hover { background: var(--dark-500); border-color: rgba(255,255,255,0.2); }
+
+/* Inputs */
+.input {
+  background: var(--dark-700);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  color: #e2e8f0;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  width: 100%;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.input:focus { border-color: var(--rdc-rouge); box-shadow: 0 0 0 3px rgba(206,17,38,0.15); }
+.input::placeholder { color: #64748b; }
+
+select.input option { background: var(--dark-800); }
+
+/* Badge statuts */
+.badge { padding: 0.2rem 0.6rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.badge-rouge { background: rgba(206,17,38,0.15); color: #f87171; border: 1px solid rgba(206,17,38,0.3); }
+.badge-vert { background: rgba(0,154,68,0.15); color: #4ade80; border: 1px solid rgba(0,154,68,0.3); }
+.badge-jaune { background: rgba(247,214,24,0.15); color: #fbbf24; border: 1px solid rgba(247,214,24,0.3); }
+.badge-bleu { background: rgba(0,127,255,0.15); color: #60a5fa; border: 1px solid rgba(0,127,255,0.3); }
+.badge-gris { background: rgba(100,116,139,0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.3); }
+
+/* Urgente banner */
+.urgent-banner {
+  background: linear-gradient(135deg, rgba(206,17,38,0.2), rgba(206,17,38,0.05));
+  border-left: 4px solid var(--rdc-rouge);
+  padding: 0.75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+/* Heatmap dot */
+.heat-dot { border-radius: 50%; opacity: 0.7; filter: blur(2px); }
+
+/* Page fade */
+.page-enter { animation: fade-up 0.35s ease-out; }
+
+/* Leaflet dark override */
+.leaflet-container { background: var(--dark-800) !important; }
+
+/* Priority colors */
+.priority-critical { color: #f43f5e; }
+.priority-high { color: #f97316; }
+.priority-medium { color: #eab308; }
+.priority-low { color: #22c55e; }
