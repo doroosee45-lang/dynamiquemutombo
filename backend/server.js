@@ -62,6 +62,8 @@
 //   console.log(`🔌 Socket.io actif`);
 //   console.log(`🇨🇩 Dynamique Israël Mutombo v2.0\n`);
 // });
+
+
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -72,7 +74,11 @@ const { errorHandler, apiLimiter } = require('./middleware/error');
 
 const app = express();
 
-// Connexion DB immédiate (sans cache inutile)
+// ✅ Indique à Express qu'il est derrière un proxy (Vercel, etc.)
+// Valeur 1 = seul le premier proxy est fiable. Adaptez si besoin.
+app.set('trust proxy', 1);
+
+// Connexion DB immédiate
 connectDB();
 
 // Middlewares
