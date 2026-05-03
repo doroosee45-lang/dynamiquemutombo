@@ -82,6 +82,7 @@ app.set('trust proxy', 1);
 connectDB();
 
 // Middlewares
+
 app.use(helmet({ crossOriginEmbedderPolicy: false }));
 app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173', credentials: true }));
 app.use(morgan('dev'));
@@ -95,6 +96,7 @@ app.use('/api/signalements', require('./routes/signalements'));
 app.use('/api', require('./routes/index'));
 
 // Health check
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'OK', version: '2.0.0', timestamp: new Date().toISOString() });
 });
